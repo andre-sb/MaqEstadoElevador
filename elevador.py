@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from transitions import Machine, State
+from transitions import Machine, State, MachineError
 from transitions_gui import WebMachine
 
 def v(obj):
@@ -43,4 +43,9 @@ elevador = Elevador()
 maquina  = WebMachine(model=elevador, states=estados, transitions=transicoes, initial='inicio')
 elevador.iniciar()
 
-pass
+while True:
+    comando = input('Evento: ')
+    try:
+        elevador.trigger(comando)
+    except (MachineError, AttributeError):
+        print(f'Evento inválido {comando} foi ignorado')
