@@ -59,11 +59,13 @@ transicoes = [
 
     {'source':'parado',        'trigger':'subir',      'dest':'acelera_sobe'   },
     {'source':'acelera_sobe',  'trigger':'veloc',      'dest':'subindo'        },
+    {'source':'acelera_sobe',  'trigger':'perto',      'dest':'freia_sobe'     },    
     {'source':'subindo',       'trigger':'perto',      'dest':'freia_sobe'     },
     {'source':'freia_sobe',    'trigger':'chegou',     'dest':'parado'         },
 
     {'source':'parado',        'trigger':'descer',     'dest':'acelera_desce'  },
     {'source':'acelera_desce', 'trigger':'veloc',      'dest':'descendo'       },
+    {'source':'acelera_desce', 'trigger':'perto',      'dest':'freia_desce'    },    
     {'source':'descendo',      'trigger':'perto',      'dest':'freia_desce'    },
     {'source':'freia_desce',   'trigger':'chegou',     'dest':'parado'         },
 ]
