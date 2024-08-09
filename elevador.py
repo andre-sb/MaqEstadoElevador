@@ -51,7 +51,8 @@ estados = [
     State('freia_sobe'    , on_enter='MotorFreiaSobe'),    
     State('descendo'      , on_enter='MotorDescer'),
     State('acelera_desce' , on_enter='MotorAceleraDesce'),
-    State('freia_desce'   , on_enter='MotorFreiaDesce')
+    State('freia_desce'   , on_enter='MotorFreiaDesce'),
+    State('emergencia'    , on_enter='PararMotor', final=True)
     ]
 
 transicoes = [
@@ -72,6 +73,7 @@ transicoes = [
 
 elevador = Elevador()
 maquina  = WebMachine(model=elevador, states=estados, transitions=transicoes, initial='inicio')
+maquina.add_transition('emerg', '*', 'emergencia')
 elevador.iniciar()
 
 while True:
