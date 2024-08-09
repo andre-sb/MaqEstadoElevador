@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from transitions import Machine
+from transitions import Machine, State
 
 def v(obj):
     for x in dir(obj):
@@ -13,9 +13,21 @@ class Elevador:
     direcao=Path('./animacao/direcao.txt')
     tempo=Path('./animacao/tempo.txt')
 
+    def PararMotor(self):
+        self.direcao.write_text('0')
+
+    def MotorSubir(self):
+        self.direcao.write_text('-1')
+
+    def MotorDescer(self):
+        self.direcao.write_text('1')
 
 
-estados = ['parado','subindo','descendo']
+estados = [
+    State('parado'      , on_enter='PararMotor'),
+    State('subindo'     , on_enter='MotorSubir'),
+    State('descendo'    , on_enter='MotorDescer'),
+    ]
 
 transicoes = [
     {'source':'parado',        'trigger':'subir',      'dest':'subindo'        },
