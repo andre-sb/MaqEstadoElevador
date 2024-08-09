@@ -24,12 +24,14 @@ class Elevador:
 
 
 estados = [
+    State('inicio'),
     State('parado'      , on_enter='PararMotor'),
     State('subindo'     , on_enter='MotorSubir'),
     State('descendo'    , on_enter='MotorDescer'),
     ]
 
 transicoes = [
+    {'source':'inicio',        'trigger':'iniciar',    'dest':'parado'         },
     {'source':'parado',        'trigger':'subir',      'dest':'subindo'        },
     {'source':'parado',        'trigger':'descer',     'dest':'descendo'       },
     {'source':'subindo',       'trigger':'chegou',     'dest':'parado'         },
@@ -37,6 +39,7 @@ transicoes = [
 ]
 
 elevador = Elevador()
-maquina  = Machine(model=elevador, states=estados, transitions=transicoes, initial='parado')
+maquina  = Machine(model=elevador, states=estados, transitions=transicoes, initial='inicio')
+elevador.iniciar()
 
 pass
