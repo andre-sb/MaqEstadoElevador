@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from transitions import Machine, State
+from transitions_gui import WebMachine
 
 def v(obj):
     for x in dir(obj):
@@ -39,7 +40,7 @@ transicoes = [
 ]
 
 elevador = Elevador()
-maquina  = Machine(model=elevador, states=estados, transitions=transicoes, initial='inicio')
+maquina  = WebMachine(model=elevador, states=estados, transitions=transicoes, initial='inicio')
 elevador.iniciar()
 
 pass
